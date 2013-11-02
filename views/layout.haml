@@ -1,0 +1,29 @@
+!!! 5
+%html
+  %head
+    %meta{"charset" => "UTF-8"}/
+    %meta{'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge;chrome=1'}/
+    %meta{'name' => "viewport", 'content' => "width=device-width, initial-scale=1.0"}/
+    %title Property Photos
+    %link{:href => 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700',
+          :rel  => 'stylesheet',
+          :type => 'text/css'}/
+    %link{:href => "/css/semantic.min.css",
+          :rel  => 'stylesheet',
+          :type => "text/css"}/
+    %link{:href => "/css/photoapp.css",
+          :rel  => "stylesheet",
+          :type => "text/css"}/
+    %script{:type => "text/javascript",
+            :src  => "http://code.jquery.com/jquery-1.10.2.min.js"}
+    %script{:type => "text/javascript",
+            :src  => "/javascript/semantic.min.js"}
+  %body
+    #menu.ui.fixed.inverted.menu
+      .container
+        .title.item Property Photos Coding Sample
+    #content.main.container
+      = yield
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"}
+    %script{:src => "/javascript/photoapp.js"}

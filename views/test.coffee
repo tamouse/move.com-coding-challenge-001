@@ -1,0 +1,1 @@
+alert "coffeescript on board!"

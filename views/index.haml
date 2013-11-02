@@ -1,0 +1,22 @@
+%script{:id => "thumbtemplate", :type => "text/template"}
+  != '<img class="ui image" src="<%= href %>" alt="<%= description %>" title="<%= description %>" />'
+
+.ui.basic.segment
+  %h1.ui.header
+    Property
+    %span#property-id 31415926535
+    Photos
+  #gallery
+    .ui.segment
+      %img#bigimage.ui.image{:src => "http://placekitten.com/640/480"}
+    .ui.segment
+      #ticker.ui.small.images
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
+        %img.ui.image{:src => "http://placekitten.com/120/80"} 
