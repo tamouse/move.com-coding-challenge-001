@@ -106,13 +106,20 @@ class Property extends Backbone.Model
     Backbone.trigger("show:image", ticker.collection.at(0))
     ticker
 
-    
+class PropertyView extends Backbone.View
+  el: '#property-id'
+  initialize: (prop) ->
+    console.log(prop)
+    this.listenTo(prop,'sync',this.changeProperty)
+  changeProperty: (model, response, options) ->
+    console.log(model)
+    console.log("new property: " + model.get("property_id"))
+    this.$el.text(model.get("property_id"))
+
 ticker = new TickerView
-
 bigimg = new BigImageView
-
 description = new DescriptionView
-
 prop = new Property
-  id: 17
-
+  id: 17                        # this number is actually meaningless :)
+property = new PropertyView(prop)
+  

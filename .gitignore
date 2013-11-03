@@ -1,0 +1,3 @@
+
+# ignore any js files that get created in view -- should be coffeescript files only
+views/*.js

@@ -4,6 +4,7 @@ require 'json'
 
 enable :sessions
 set :haml, :format => :html5
+set :port, 9201
 
 get '/' do
   haml :index
