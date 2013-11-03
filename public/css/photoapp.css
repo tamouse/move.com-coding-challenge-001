@@ -26,6 +26,12 @@ body.vertical #bigimage {
     margin: 0 auto;
 }
 
+body.vertical #description {
+    max-height: 100px;
+    overflow: auto;
+}
+
+
 body.vertical #ticker {
     max-width: 640px;
     width: 100%;
