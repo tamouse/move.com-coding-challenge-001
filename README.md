@@ -90,4 +90,5 @@ more pleasing, so I made both.
 - *Copyright:* Tamara Temple
 - *License:* MIT
 - Images copyright Move.com.
+- *Github:* https://github.com/tamouse/move.com-coding-challenge-001
 
