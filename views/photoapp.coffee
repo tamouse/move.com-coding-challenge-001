@@ -116,10 +116,10 @@ class PropertyView extends Backbone.View
   changeProperty: (model, response, options) ->
     this.$el.text(model.get("property_id"))
 
-ticker = new TickerView
-bigimg = new BigImageView
-description = new DescriptionView
-prop = new Property
+window.ticker = new TickerView
+window.bigimg = new BigImageView
+window.description = new DescriptionView
+window.prop = new Property
   id: 17                        # this number is actually meaningless :)
-property = new PropertyView(prop)
+window.property = new PropertyView(prop)
   
