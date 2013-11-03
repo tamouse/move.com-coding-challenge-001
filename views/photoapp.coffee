@@ -59,7 +59,7 @@ class BigImageView extends Backbone.View
     this.$el.attr('src',model.get('original_src'))
 
   render: ->
-    this.changeImage(app.collection[0])
+    this.changeImage(ticker.collection.at(0))
     this.$el.attr('title',model.get('title'))
     this.$el.attr('alt',model.get('alt'))
   
@@ -75,7 +75,7 @@ class DescriptionView extends Backbone.View
       this.$el.html("&nbsp;")
 
   render: ->
-    this.changeDescription(app.collection.at(0))
+    this.changeDescription(ticker.collection.at(0))
 
 
 class Property extends Backbone.Model
@@ -85,20 +85,29 @@ class Property extends Backbone.Model
 
   urlRoot: "/api/property"
 
-  fillTicker: (prop, app) ->
+  initialize: ->
+    this.listenTo(this,'sync',this.propertyFetchedHook)
+    this.fetch
+      success: ->
+        true
+
+  propertyFetchedHook: (model, response, options) ->
+    this.fillTicker(model, ticker)
+
+  fillTicker: (prop, ticker) ->
     _.each(prop.get("photos"), (item) ->
-      app.collection.add(new Thumb
+      ticker.collection.add(new Thumb
         src: item.href
         title: item.description
         alt: item.description
       )
     )
-    app.render()
-    Backbone.trigger("show:image", app.collection.at(0))
-    app
+    ticker.render()
+    Backbone.trigger("show:image", ticker.collection.at(0))
+    ticker
 
     
-app = new TickerView
+ticker = new TickerView
 
 bigimg = new BigImageView
 
@@ -106,10 +115,4 @@ description = new DescriptionView
 
 prop = new Property
   id: 17
-
-prop.fetch
-  success: ->
-    prop.fillTicker(prop, app)
-
-
 
