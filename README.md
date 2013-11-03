@@ -21,7 +21,7 @@ Run bundler to make sure all dependencies are there:
 
 Start up the application:
 
-    $ ruby sinapp.rb
+    $ bundle exec ./sinapp.rb
 
 This will launch the server on port 9201. Open a browser window to
 `http://localhost:9201` and you should see the application.
@@ -90,5 +90,5 @@ more pleasing, so I made both.
 - *Copyright:* Tamara Temple
 - *License:* MIT
 - Images copyright Move.com.
-- *Github:* https://github.com/tamouse/move.com-coding-challenge-001
+- *Github:* [https://github.com/tamouse/move.com-coding-challenge-001](https://github.com/tamouse/move.com-coding-challenge-001)
 
