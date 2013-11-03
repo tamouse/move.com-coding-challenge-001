@@ -89,6 +89,5 @@ more pleasing, so I made both.
 - *Author:* Tamara Temple <tamara@tamaratemple.com>
 - *Copyright:* Tamara Temple
 - *License:* MIT
-
-Images copyright Move.com.
+- Images copyright Move.com.
 
