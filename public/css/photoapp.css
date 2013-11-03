@@ -1,7 +1,7 @@
 /* CSS for the Property Photo Gallery app */
 /* Tamara Temple <tamara@tamaratemple.com> */
 
-html,body {
+body {
     font-family: Open-Sans, sans-serif;
     font-size: 1.2em;
     margin: 0;
@@ -10,17 +10,25 @@ html,body {
 
 #content {
     padding-top: 60px;
-    max-width: 700px;
     margin: 0 auto;
 }
 
-#bigimage {
-    max-height: 480px;
+body.vertical #content {
+    max-width: 700px;
 }
 
-#ticker {
+body.vertical #image {
+    max-height: 600px;
+    min-height: 600px;
+}
+body.vertical #bigimage {
+    max-height: 480px;
+    margin: 0 auto;
+}
+
+body.vertical #ticker {
     max-width: 640px;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }

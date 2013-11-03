@@ -7,7 +7,16 @@ set :haml, :format => :html5
 set :port, 9201
 
 get '/' do
-  haml :index
+  haml :index, :locals => { :style => "vertical"}
+end
+
+get "/2" do
+  haml :index2, :locals => { :style => ""}
+end
+
+get "/readme" do
+  text = markdown(File.read("README.md"))
+  haml :readme, :locals => { :text => text , :style => ""}
 end
 
 get '/javascript/photoapp.js' do

@@ -18,10 +18,20 @@
             :src  => "http://code.jquery.com/jquery-1.10.2.min.js"}
     %script{:type => "text/javascript",
             :src  => "/javascript/semantic.min.js"}
-  %body
+  %body{:class => style}
     #menu.ui.fixed.inverted.menu
       .container
         .title.item Property Photos Coding Sample
+        %a.item{:href => "/"}
+          %i.home.icon
+          Vertical
+        %a.item{:href => "/2"}
+          %i.column.layout.icon
+          Horizontal
+        .right.menu
+          %a.item{:href => "/readme"}
+            %i.info.icon
+            About
     #content.main.container
       = yield
     %script{:src => "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"}

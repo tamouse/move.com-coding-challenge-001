@@ -32,7 +32,11 @@ I decided to go with a [Sinatra](http://sinatrarb.com) application
 server for this, primarily for the utter simplicity. The server only
 has a few routes:
 
-- '/' -- delivers the index page in html, compiled from haml.
+- '/' -- delivers the gallery in a vertical format (thumbnails below
+  larger image)
+- '/2' -- delivers the gallery in a horizontal format (thumbnails to
+  the right of the larger image)
+- '/readme' -- this file
 - '/javascript/photoapp.js' -- delivers the photo application,
   compiled from cofeescript
 - '/api/property/:id' -- to emulate the AJAX request to serve the
@@ -40,38 +44,34 @@ has a few routes:
 
 ### Backbone elements
 
-#### Models
+As with most Backbone applications, it starts with an Application
+View, which keeps track of the other main objects in the system,
+starting things up, and keeping things going.
 
-- Thumb -- which takes care of the individual thumbnail images
-- Property -- which takes care of the AJAX/JSON processing
+`AppView` contains the `PhotoCollection` which is the image
+information retrieved from the AJAX call. It also instantiates two
+other views, `ImageView` and `TickerView`:
 
-#### Collections
+- `ImageView` manages the large, "hero" unit view of the gallery. This
+  is the currently selected image in the gallery.
 
-- Ticker -- the collection of thumbnail images
+- `TickerView` manages the thumbnail display.
 
-#### Views
-
-- ThumbView -- for each thumbnail
-- TickerView -- for the ticker strip of thumbnails
-- BigImageView -- for the large image
-- DescriptionView -- a description area for the large image
-- PropertyView -- the property description (currently only contains
-  the property id)
+Additionally, `Photo` is the model for holding the thumbnail picture
+elements, and `PhotoView` is the view that shows them.
 
 ### Handling AJAX/JSON 
 
-For this application, 
-the JSON returned is not directly applicable to a hierarchy of
-Backbone models, collections, and views. I chose to create a special
-model, `Propery`, that would deal with the AJAX request and take the
-resulting JSON and populate the Ticker collection with Thumb's from
-the resulting JSON data.
+For this application, the JSON returned is not directly applicable to
+a hierarchy of Backbone models, collections, and views.
 
-As an alternative, I think I could have done this as well from inside
-the Ticker collection itself, which would have been more cohesive.
+`PhotoCollection` has the method `update`, which performs an AJAX call
+to the Sinatra server, which returns the JSON data (as was supplied).
 
-The coupling in this design seems a bit much, actually. I think it
-should be better separated by making more use of events.
+The photos array from the returned data is used to populate the
+collection by creating new `Photo` models and adding them to the
+collection.
+
 
 ## Front-End Design
 
@@ -79,4 +79,16 @@ I decided to use the [Semantic-UI](http://semantic-ui.com/) user
 interface library as it's something new that I have been wanting to
 learn. It is an alternative to Twitter Bootstrap, which I have been
 using a lot, and I wanted to try something else.
+
+I was not sure whether a vertical or horizontal arrangement would be
+more pleasing, so I made both.
+
+
+*******
+
+- *Author:* Tamara Temple <tamara@tamaratemple.com>
+- *Copyright:* Tamara Temple
+- *License:* MIT
+
+Images copyright Move.com.
 
