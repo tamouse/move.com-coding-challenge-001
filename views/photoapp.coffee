@@ -31,11 +31,30 @@ class ThumbView extends Backbone.View
 class Ticker extends Backbone.Collection
   model: Thumb
 
+  initialize: ->
+    _.bindAll(this, 'fillTicker')
+    Backbone.on("property:fetched", this.fillTicker, this)
+
+  fillTicker: (prop) ->
+    _.each(prop.get("photos"),
+      (item) ->
+        this.add(new Thumb
+          src: item.href
+          title: item.description
+          alt: item.description
+        )
+      , this)
+    Backbone.trigger("ticker:filled", this)
+    Backbone.trigger("show:image", this.at(0))
+    this
+
 class TickerView extends Backbone.View
   el: "#ticker"
 
   initialize: ->
+    _.bindAll(this, 'render', 'renderThumb')
     this.collection = new Ticker()
+    Backbone.on("ticker:filled", this.render, this)
     this
 
   render: ->
@@ -79,41 +98,22 @@ class DescriptionView extends Backbone.View
 
 
 class Property extends Backbone.Model
-  defaults:
-    property_id: 0
-    photos: []
-
   urlRoot: "/api/property"
 
-  initialize: ->
+  initialize: (options) ->
     this.listenTo(this,'sync',this.propertyFetchedHook)
     this.fetch
       success: ->
         true
 
   propertyFetchedHook: (model, response, options) ->
-    this.fillTicker(model, ticker)
-
-  fillTicker: (prop, ticker) ->
-    _.each(prop.get("photos"), (item) ->
-      ticker.collection.add(new Thumb
-        src: item.href
-        title: item.description
-        alt: item.description
-      )
-    )
-    ticker.render()
-    Backbone.trigger("show:image", ticker.collection.at(0))
-    ticker
+    Backbone.trigger("property:fetched", this)
 
 class PropertyView extends Backbone.View
   el: '#property-id'
   initialize: (prop) ->
-    console.log(prop)
     this.listenTo(prop,'sync',this.changeProperty)
   changeProperty: (model, response, options) ->
-    console.log(model)
-    console.log("new property: " + model.get("property_id"))
     this.$el.text(model.get("property_id"))
 
 ticker = new TickerView
