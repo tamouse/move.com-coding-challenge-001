@@ -1,6 +1,13 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler/setup'
+
 require 'sinatra'
 require 'sinatra/json'
 require 'json'
+require 'haml'
+require 'redcarpet'
+require 'coffee_script'
 
 enable :sessions
 set :haml, :format => :html5
